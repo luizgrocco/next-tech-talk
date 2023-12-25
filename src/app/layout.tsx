@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
+import styles from "./app.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,6 +11,28 @@ export const metadata: Metadata = {
   description: "Todo App for Tagview's Tech Talk presentation",
 };
 
+const Header = () => (
+  <nav className={styles.navbar}>
+    <Link className={styles.link} href="/todos">
+      <span>Client Side Rendering (CSR)</span>
+    </Link>
+    <Link className={styles.link} href="/real-time-leaderboard">
+      <span>Sever Side Rendering (SSR)</span>
+    </Link>
+    <Link className={styles.link} href="/snapshot-leaderboard">
+      <span>Static Site Generation (SSG)</span>
+    </Link>
+    <Link className={styles.link} href="/30-second-leaderboard">
+      <span>Static Site Generation (SSG/ISR)</span>
+      <span>Time based revalidation</span>
+    </Link>
+    <Link className={styles.link} href="/event-based-leaderboard">
+      <span>Static Site Generation (SSR/ISR)</span>
+      <span>Event based revalidation</span>
+    </Link>
+  </nav>
+);
+
 export default function RootLayout({
   children,
 }: {
@@ -16,7 +40,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

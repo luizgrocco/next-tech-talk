@@ -1,0 +1,21 @@
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  color: red;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
