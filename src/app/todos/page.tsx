@@ -1,10 +1,10 @@
-import { Title } from "./components/Title";
+import { Todos } from "./components/Todos";
 import style from "./todos.module.css";
 
 export default function TodosPage() {
   return (
     <div className={style.container}>
-      <Title />
+      <Todos />
     </div>
   );
 }

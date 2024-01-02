@@ -12,4 +12,5 @@ export const todos = sqliteTable("todos", {
 });
 
 export type Todo = typeof todos.$inferSelect; // return type when queried
+export type Priority = Todo["priority"];
 export type NewTodo = typeof todos.$inferInsert; // insert type
