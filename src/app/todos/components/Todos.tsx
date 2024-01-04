@@ -85,24 +85,31 @@ export const Todos = () => {
       </header>
 
       <section className={style.main}>
-        <input
-          name="title"
-          value={newTodoTitle}
-          className={style.newTodo}
-          placeholder="What needs to be done?"
-          autoFocus
-          onChange={(e) => {
-            setNewTodoTitle(e.target.value);
-          }}
-          onBlur={async () => {
-            if (newTodoTitle !== "") {
-              const newTasks = await addTask(newTodoTitle, newTodoPriority);
-              if (newTasks) {
-                setTasks((tasks) => [...tasks, ...newTasks]);
+        <div className={style.inputContainer}>
+          <div className={style.priorityContainer}>
+            <button className={style.highPriority} />
+            <button className={style.mediumPriority} />
+            <button className={style.lowPriority} />
+          </div>
+          <input
+            name="title"
+            value={newTodoTitle}
+            className={style.newTodo}
+            placeholder="What needs to be done?"
+            autoFocus
+            onChange={(e) => {
+              setNewTodoTitle(e.target.value);
+            }}
+            onBlur={async () => {
+              if (newTodoTitle !== "") {
+                const newTasks = await addTask(newTodoTitle, newTodoPriority);
+                if (newTasks) {
+                  setTasks((tasks) => [...tasks, ...newTasks]);
+                }
               }
-            }
-          }}
-        />
+            }}
+          />
+        </div>
         <ul className={style.todoList}>
           {tasks
             .filter((task) =>
