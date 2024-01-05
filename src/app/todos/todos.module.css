@@ -16,6 +16,14 @@
     0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  z-index: 2;
+  border-top: 1px solid #e6e6e6;
+}
+
 .inputContainer {
   width: 100%;
   display: flex;
@@ -31,22 +39,28 @@
   box-shadow: rgba(0, 0, 0, 0.5);
 }
 
-.highPriority {
+.priority {
   height: 100%;
-  background-color: red;
+  opacity: 0.35;
   border: none;
+  cursor: pointer;
+}
+
+.highPriority {
+  background-color: rgb(255, 69, 69);
 }
 
 .mediumPriority {
-  height: 100%;
   background-color: yellow;
-  border: none;
 }
 
 .lowPriority {
-  height: 100%;
-  background-color: green;
-  border: none;
+  background-color: rgb(108, 240, 108);
+}
+
+.selectedPriority {
+  opacity: 1;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .newTodo {
@@ -79,31 +93,6 @@
   text-rendering: optimizeLegibility;
 }
 
-.edit {
-  margin: 0;
-  width: 100%;
-  font-size: 24px;
-  font-family: inherit;
-  font-weight: inherit;
-  line-height: 1.4em;
-  color: #111111;
-  padding: 6px;
-  border: 1px solid #999;
-  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  margin-top: 60px;
-  background-color: #fff;
-  z-index: 2;
-  border-top: 1px solid #e6e6e6;
-}
-
 .todoList {
   display: flex;
   flex-direction: column;
@@ -113,6 +102,7 @@
 }
 
 .todo {
+  display: flex;
   font-size: 24px;
   border-bottom: 1px solid #ededed;
 }
@@ -121,66 +111,60 @@
   border-bottom: none;
 }
 
-.editing {
-  border-bottom: none;
-  padding: 0;
-}
-
-/* .view {
-  display: none;
-} */
-
 .toggle {
   text-align: center;
-  width: 40px;
-  /* auto, since non-WebKit browsers doesn't support input styling */
+  width: 60px;
   height: auto;
-  margin: auto 0;
-  border: none; /* Mobile Safari */
+  border: none;
   -webkit-appearance: none;
   appearance: none;
-  opacity: 0;
-}
-
-.todoList li .toggle + label {
-  /*
-		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
-		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
-	*/
   background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: center left;
+  background-position: center;
 }
 
-.todoList li .toggle:checked + label {
+.toggleSelected {
   background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E");
 }
 
-.todoList li label {
+.view {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  flex-grow: 1;
+}
+
+/* .editing {
+  border-bottom: none;
+  padding: 0;
+} */
+
+.todoLabel {
+  flex-grow: 1;
   word-break: break-all;
-  padding: 15px 15px 15px 60px;
-  display: block;
+  padding: 15px 15px 15px 15px;
   line-height: 1.2;
   transition: color 0.4s;
   font-weight: 400;
   color: #4d4d4d;
 }
 
-.todoList li.completed label {
+.todoCompleted {
   color: #cdcdcd;
   text-decoration: line-through;
 }
 
+.todoPriority {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+
 .destroy {
-  display: none;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  bottom: 0;
+  opacity: 0;
   width: 40px;
-  height: 40px;
-  margin: auto 0;
-  font-size: 30px;
+  height: auto;
+  font-size: 25px;
   color: #cc9a9a;
   margin-bottom: 11px;
   transition: color 0.2s ease-out;
@@ -191,7 +175,6 @@
   padding: 0;
   border: 0;
   background: none;
-  vertical-align: baseline;
   font-family: inherit;
   -webkit-appearance: none;
   appearance: none;
@@ -200,6 +183,7 @@
 }
 
 .destroy:hover {
+  opacity: 1;
   color: #af5b5e;
 }
 
@@ -207,16 +191,22 @@
   content: "×";
 }
 
-.destroy {
-  display: block;
-}
-
-.edit {
-  display: none;
-}
-
-.todoList li.editing:last-child {
-  margin-bottom: -1px;
+.todoEdit {
+  margin: 0;
+  width: 100%;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: 1.4em;
+  color: #111111;
+  padding: 15px 15px 15px 15px;
+  border: 1px solid #999;
+  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: inherit;
+  outline: none;
 }
 
 .footer {
@@ -229,24 +219,13 @@
   font-size: 15px;
   border-top: 1px solid #e6e6e6;
   height: fit-content;
-}
-
-/* .footer::after {
-  background-color: transparent;
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  top: 0;
-  overflow: hidden;
   box-shadow:
     0 1px 1px rgba(0, 0, 0, 0.2),
     0 8px 0 -3px #f6f6f6,
     0 9px 1px -3px rgba(0, 0, 0, 0.2),
     0 16px 0 -6px #f6f6f6,
     0 17px 2px -6px rgba(0, 0, 0, 0.2);
-} */
+}
 
 .todoCount {
   width: fit-content;
@@ -287,7 +266,7 @@
   border-color: rgba(175, 47, 47, 0.1);
 }
 
-.selected {
+.selectedFilter {
   border-color: rgba(175, 47, 47, 0.2);
 }
 
@@ -313,4 +292,9 @@
 
 .clearCompleted:hover {
   text-decoration: underline;
+}
+
+.shadow {
+  margin-top: 60px;
+  box-shadow: 0px 0px 10px 2px rgba(252, 251, 251, 0.5);
 }

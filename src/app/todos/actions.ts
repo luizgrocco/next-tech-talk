@@ -3,6 +3,7 @@
 import { eq } from "drizzle-orm";
 import db from "../../../db/db-client";
 import { todos, Priority, Todo } from "../../../db/schema";
+import { sleep } from "@/utils";
 
 export async function fetchAllTasks() {
   try {
@@ -18,6 +19,7 @@ export async function addTask(title: string, priority: Priority) {
     const result = await db
       .insert(todos)
       .values({ title, priority })
+      // Drizzle's "returning" method gives you the inserted or updated values back (DB Support dependent: Postgres, SQLite)
       .returning();
     return result;
   } catch (_) {
@@ -42,6 +44,9 @@ export async function updateTask(
 }
 
 export async function deleteTask(taskId: number) {
+  // My Api here is to return (true | T or false) when actions on the server succeed or fail (db operations mostly).
+  // A better api would be to return some structured response such as:
+  // interface Response<T> {ok: true | false, error: string, value: T}
   try {
     await db.delete(todos).where(eq(todos.id, taskId));
     return true;
@@ -51,10 +56,18 @@ export async function deleteTask(taskId: number) {
 }
 
 export async function deleteDoneTasks() {
+  await sleep(1000);
+
   try {
+    if (Math.random() < 0.5) throw new Error("failed deleting done tasks!");
     await db.delete(todos).where(eq(todos.done, true));
     return true;
   } catch (_) {
     return false;
   }
 }
+
+// Probably a good idea:
+// Wrap all server actions with a cache layer, much like Apollo client, React Query, CreateRemoteData (Navarro™)
+// Ex: myCacheHOF(serverAction, myDependencyArray: Array | undefined)
+// if dependency array doesn't change, do not re-fetch, if left undefined, always re-fetch.
