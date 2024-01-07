@@ -22,9 +22,25 @@
 }
 
 .navbar {
-  height: 64px;
-  width: 100%;
   display: flex;
+  min-height: 64px;
+}
+
+.homeItem {
+  width: 10%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  padding-left: 2%;
+  color: orange;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.navItems {
+  font-size: 14px;
+  display: flex;
+  width: 90%;
   gap: 24px;
   justify-content: center;
   align-items: center;

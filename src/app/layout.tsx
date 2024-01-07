@@ -13,23 +13,28 @@ export const metadata: Metadata = {
 
 const Header = () => (
   <nav className={styles.navbar}>
-    <Link className={styles.link} href="/todos">
-      <span>Client Side Rendering (CSR)</span>
-    </Link>
-    <Link className={styles.link} href="/real-time-leaderboard">
-      <span>Sever Side Rendering (SSR)</span>
-    </Link>
-    <Link className={styles.link} href="/snapshot-leaderboard">
-      <span>Static Site Generation (SSG)</span>
-    </Link>
-    <Link className={styles.link} href="/30-second-leaderboard">
-      <span>Static Site Generation (SSG/ISR)</span>
-      <span>Time based revalidation</span>
-    </Link>
-    <Link className={styles.link} href="/event-based-leaderboard">
-      <span>Static Site Generation (SSR/ISR)</span>
-      <span>Event based revalidation</span>
-    </Link>
+    <div className={styles.homeItem}>
+      <Link href="/todos">todos</Link>
+    </div>
+    <div className={styles.navItems}>
+      <Link className={styles.link} href="/client-side-leaderboard">
+        <span>Client Side Rendering (CSR)</span>
+      </Link>
+      <Link className={styles.link} href="/real-time-leaderboard">
+        <span>Sever Side Rendering (SSR)</span>
+      </Link>
+      <Link className={styles.link} href="/snapshot-leaderboard">
+        <span>Static Site Generation (SSG)</span>
+      </Link>
+      <Link className={styles.link} href="/30-second-leaderboard">
+        <span>Static Site Generation (SSG/ISR)</span>
+        <span>Time based revalidation</span>
+      </Link>
+      <Link className={styles.link} href="/event-based-leaderboard">
+        <span>Static Site Generation (SSR/ISR)</span>
+        <span>Event based revalidation</span>
+      </Link>
+    </div>
   </nav>
 );
 
