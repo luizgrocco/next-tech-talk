@@ -68,6 +68,4 @@ export async function deleteDoneTasks() {
 }
 
 // Probably a good idea:
-// Wrap all server actions with a cache layer, much like Apollo client, React Query, CreateRemoteData (Navarro™)
-// Ex: myCacheHOF(serverAction, myDependencyArray: Array | undefined)
-// if dependency array doesn't change, do not re-fetch, if left undefined, always re-fetch.
+// Wrap all server actions with a cache layer, eg. Apollo client, React Query, CreateRemoteData (Navarro™)
