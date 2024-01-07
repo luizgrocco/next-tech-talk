@@ -16,6 +16,11 @@
     0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
+.mainContainer {
+  margin-top: 60px;
+  box-shadow: 0px 0px 10px 2px rgba(252, 251, 251, 0.5);
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -112,6 +117,7 @@
 }
 
 .toggle {
+  cursor: pointer;
   text-align: center;
   width: 60px;
   height: auto;
@@ -133,11 +139,6 @@
   align-items: center;
   flex-grow: 1;
 }
-
-/* .editing {
-  border-bottom: none;
-  padding: 0;
-} */
 
 .todoLabel {
   flex-grow: 1;
@@ -164,31 +165,17 @@
   opacity: 0;
   width: 40px;
   height: auto;
-  font-size: 25px;
-  color: #cc9a9a;
-  margin-bottom: 11px;
-  transition: color 0.2s ease-out;
-
-  color: #111111;
-  font-weight: 250;
-  margin: 0;
-  padding: 0;
+  font-size: 30px;
+  font-weight: 350;
   border: 0;
   background: none;
   font-family: inherit;
-  -webkit-appearance: none;
-  appearance: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  transition: color 0.2s ease-out;
 }
 
 .destroy:hover {
   opacity: 1;
   color: #af5b5e;
-}
-
-.destroy:after {
-  content: "×";
 }
 
 .todoEdit {
@@ -277,12 +264,10 @@
   cursor: pointer;
   color: #111111;
   font-weight: 250;
-  margin: 0;
   padding: 5px;
   border: 0;
   background: none;
   font-size: 100%;
-  vertical-align: baseline;
   font-family: inherit;
   -webkit-appearance: none;
   appearance: none;
@@ -292,9 +277,4 @@
 
 .clearCompleted:hover {
   text-decoration: underline;
-}
-
-.shadow {
-  margin-top: 60px;
-  box-shadow: 0px 0px 10px 2px rgba(252, 251, 251, 0.5);
 }

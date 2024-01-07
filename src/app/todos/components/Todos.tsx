@@ -1,9 +1,10 @@
 "use client";
-import {
+import React, {
+  FC,
   ChangeEvent,
   FocusEventHandler,
   KeyboardEventHandler,
-  useEffect,
+  // useEffect,
   useState,
 } from "react";
 import style from "../todos.module.css";
@@ -13,40 +14,44 @@ import {
   addTask,
   deleteDoneTasks,
   deleteTask,
-  fetchAllTasks,
+  // fetchAllTasks,
   updateTask,
 } from "../actions";
 
-export const Todos = () => {
+type TodosProps = {
+  initialTasks: Todo[];
+};
+
+type Filter = "all" | "active" | "completed";
+
+export const Todos: FC<TodosProps> = ({ initialTasks }) => {
+  const [tasks, setTasks] = useState<Todo[]>(initialTasks);
   const [newTodoTitle, setNewTodoTitle] = useState("");
   const [newTodoPriority, setNewTodoPriority] = useState<Priority>("low");
-  const [tasks, setTasks] = useState<Todo[]>([]);
   const [taskBeingEditedId, setTaskBeingEditedId] = useState<number | null>(
     null
   );
   const [taskBeingEditedTitle, setTaskBeingEditedTitle] = useState("");
-  const [currentFilter, setCurrentFilter] = useState<
-    "all" | "active" | "completed"
-  >("all");
+  const [currentFilter, setCurrentFilter] = useState<Filter>("all");
   const [clearCompletedLoading, setClearCompletedLoading] = useState(false);
 
   const activeTasksCount = tasks.filter((task) => !task.done).length;
 
-  useEffect(() => {
-    const fetchInitialTasks = async () => {
-      try {
-        const initialTasks = await fetchAllTasks();
-        if (initialTasks) {
-          setTasks(initialTasks);
-        }
-      } catch {
-        // Retries?
-        // Set error state?
-      }
-    };
+  // useEffect(() => {
+  //   const fetchInitialTasks = async () => {
+  //     try {
+  //       const initialTasks = await fetchAllTasks();
+  //       if (initialTasks) {
+  //         setTasks(initialTasks);
+  //       }
+  //     } catch {
+  //       // Retries?
+  //       // Set error state?
+  //     }
+  //   };
 
-    fetchInitialTasks();
-  }, []);
+  //   fetchInitialTasks();
+  // }, []);
 
   const handleNewTodoBlur: FocusEventHandler<HTMLInputElement> = async () => {
     if (newTodoTitle !== "") {
@@ -185,7 +190,7 @@ export const Todos = () => {
         <h1 className={style.title}>todos</h1>
       </header>
 
-      <div className={style.shadow}>
+      <div className={style.mainContainer}>
         <section className={style.main}>
           <div className={style.inputContainer}>
             <div className={style.priorityContainer}>
@@ -270,7 +275,9 @@ export const Todos = () => {
                         <button
                           className={style.destroy}
                           onClick={handleDeleteTask(task)}
-                        />
+                        >
+                          ×
+                        </button>
                       </>
                     )}
                   </div>
