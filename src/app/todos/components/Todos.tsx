@@ -47,6 +47,7 @@ export const Todos: FC<TodosProps> = ({ initialTasks }) => {
   //     } catch {
   //       // Retries?
   //       // Set error state?
+  //       // Error Boundary with Suspense?
   //     }
   //   };
 

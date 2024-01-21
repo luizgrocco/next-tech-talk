@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 70px;
+  row-gap: 100px;
+}
+
+.title {
+  text-align: center;
+  color: red;
+  font-weight: 200;
+  font-size: 80px;
+}
+
+.listContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.taskList {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+.task {
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.highPriority {
+  background-color: #ff9999;
+}
+
+/* .mediumPriority {
+  background-color: #ffff99;
+}
+
+.lowPriority {
+  background-color: #99ff99;
+} */

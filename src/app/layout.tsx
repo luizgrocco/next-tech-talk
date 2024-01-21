@@ -17,20 +17,26 @@ const Header = () => (
       <Link href="/todos">todos</Link>
     </div>
     <div className={styles.navItems}>
-      <Link className={styles.link} href="/client-side-leaderboard">
+      <Link className={styles.link} href="/leaderboard/csr">
         <span>Client Side Rendering (CSR)</span>
       </Link>
-      <Link className={styles.link} href="/real-time-leaderboard">
+      <Link className={styles.link} href="/leaderboard/ssr">
         <span>Sever Side Rendering (SSR)</span>
       </Link>
-      <Link className={styles.link} href="/snapshot-leaderboard">
+      <Link className={styles.link} href="/leaderboard/ssg">
         <span>Static Site Generation (SSG)</span>
       </Link>
-      <Link className={styles.link} href="/30-second-leaderboard">
+      <Link
+        className={styles.link}
+        href="/leaderboard/ssg-time-based-revalidation"
+      >
         <span>Static Site Generation (SSG/ISR)</span>
         <span>Time based revalidation</span>
       </Link>
-      <Link className={styles.link} href="/event-based-leaderboard">
+      <Link
+        className={styles.link}
+        href="/leaderboard/ssg-event-based-revalidation"
+      >
         <span>Static Site Generation (SSR/ISR)</span>
         <span>Event based revalidation</span>
       </Link>
