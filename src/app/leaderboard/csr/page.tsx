@@ -26,7 +26,10 @@ const HighPriorityTasks = () => {
 
   return (
     <div className={style.container}>
-      <h1 className={style.title}>High Priority Tasks</h1>
+      <div>
+        <h1 className={style.title}>High Priority Tasks</h1>
+        <h2 className={style.subtitle}>Client Side Rendering</h2>
+      </div>
       <div className={style.listContainer}>
         <ul className={style.taskList}>
           {highPriorityTasks.map((task) => (
