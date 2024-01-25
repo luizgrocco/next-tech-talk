@@ -15,6 +15,17 @@ export async function fetchAllTasks() {
   }
 }
 
+export async function fetchTask(taskId: number) {
+  try {
+    const task = await db.query.todos.findFirst({
+      where: (todos, { eq }) => eq(todos.id, taskId),
+    });
+    return task;
+  } catch {
+    return false;
+  }
+}
+
 export async function addTask(title: string, priority: Priority) {
   try {
     const result = await db

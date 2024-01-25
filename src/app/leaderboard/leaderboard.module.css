@@ -49,3 +49,11 @@
 .lowPriority {
   background-color: #99ff99;
 } */
+
+.generatedTask {
+  margin-top: 20%;
+  text-align: center;
+  color: red;
+  font-size: 30px;
+  font-weight: 200;
+}
