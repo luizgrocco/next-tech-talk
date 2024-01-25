@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import db from "../../../db/db-client";
 import { todos, Priority, Todo } from "../../../db/schema";
 import { sleep } from "@/utils";
+import { revalidatePath } from "next/cache";
 
 export async function fetchAllTasks() {
   try {
@@ -37,6 +38,7 @@ export async function updateTask(
       .set(attrs)
       .where(eq(todos.id, taskId))
       .returning();
+    revalidatePath("/leaderboard/ssg/event-based-revalidation");
     return updatedTasks;
   } catch (_) {
     return false;

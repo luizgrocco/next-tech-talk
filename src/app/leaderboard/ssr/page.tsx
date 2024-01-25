@@ -3,6 +3,8 @@ import style from "../leaderboard.module.css";
 import { Todo } from "../../../../db/schema";
 import { fetchHighPriorityTasks } from "../actions";
 
+export const dynamic = "force-dynamic";
+
 const HighPriorityTasks = async () => {
   const highPriorityTasks: Todo[] = (await fetchHighPriorityTasks()) || [];
 

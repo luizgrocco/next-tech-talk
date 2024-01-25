@@ -28,14 +28,14 @@ const Header = () => (
       </Link>
       <Link
         className={styles.link}
-        href="/leaderboard/ssg-time-based-revalidation"
+        href="/leaderboard/ssg/time-based-revalidation"
       >
         <span>Static Site Generation (SSG/ISR)</span>
         <span>Time based revalidation</span>
       </Link>
       <Link
         className={styles.link}
-        href="/leaderboard/ssg-event-based-revalidation"
+        href="/leaderboard/ssg/event-based-revalidation"
       >
         <span>Static Site Generation (SSR/ISR)</span>
         <span>Event based revalidation</span>

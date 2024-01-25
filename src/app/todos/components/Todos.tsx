@@ -17,6 +17,7 @@ import {
   // fetchAllTasks,
   updateTask,
 } from "../actions";
+import { revalidatePath } from "next/cache";
 
 type TodosProps = {
   initialTasks: Todo[];

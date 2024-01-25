@@ -1,9 +1,10 @@
 import React from "react";
-import style from "../leaderboard.module.css";
-import { Todo } from "../../../../db/schema";
-import { fetchHighPriorityTasks } from "../actions";
+import style from "../../leaderboard.module.css";
+import { Todo } from "../../../../../db/schema";
+import { fetchHighPriorityTasks } from "../../actions";
 
 export const dynamic = "force-static";
+export const revalidate = 30;
 
 const HighPriorityTasks = async () => {
   const highPriorityTasks: Todo[] = (await fetchHighPriorityTasks()) || [];
